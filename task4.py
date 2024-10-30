@@ -1,13 +1,13 @@
 import numpy as np
 
-N = 10
-M = 5
+N = int(input())
+M = int(input())
 
 trigonometry_array = np.zeros((N, M))
 
 for i in range(N):
     for j in range(M):
-        trigonometry_array[i, j] = np.sin(i*N + j*M + 1)
+        trigonometry_array[i, j] = np.sin(N * (i + 1) + M * (j + 1))
         if trigonometry_array[i, j] < 0:
             trigonometry_array[i, j] = 0
 
