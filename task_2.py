@@ -2,25 +2,25 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
 
-t = np.linspace(0, 12*np.pi, 1000)
-
-def circle_move(vx0, vy0, time):
+def circle_move(R, vx0, vy0, time):
     x0 = vx0 * time
     y0 = vy0 * time
-    x = x0 * np.cos(t) - y0 * np.sin(t)
-    y = y0 * np.cos(t) + y0 * np.sin(t)
+    alpha = np.arange(0, 5*np.pi, 0.1)
+    x = x0 + R*np.cos(alpha)
+    y = y0 + R*np.sin(alpha)
     return x, y
 
 fig, ax = plt.subplots()
-ball, = plt.plot([], [])
+ball, = plt.plot([], [], '-', color='b', label='Ball')
 
 def animate(i):
-    ball.set_data(circle_move(vx0=0.01, vy0=0.01, time=i))
-    
+    ball.set_data(circle_move(R=i/100, vx0=0.01, vy0=0.01, time=0))
+    return ball
+
 edge = 3
 plt.axis('equal')
 ax.set_xlim(-edge, edge)
 ax.set_ylim(-edge, edge)
 
-ani = FuncAnimation(fig, animate, frames=100, interval=30)
+ani = FuncAnimation(fig, animate, frames=range(100), interval=30)
 ani.save('animation_4.gif', writer='pillow')
