@@ -12,12 +12,11 @@ def circle_move(vx0, vy0, time):
     return x, y
 
 fig, ax = plt.subplots()
-ball, = plt.plot([], [], '-', color='b', label='Ball')
+ball, = plt.plot([], [])
 
 def animate(i):
     ball.set_data(circle_move(vx0=0.01, vy0=0.01, time=i))
     
-
 edge = 3
 plt.axis('equal')
 ax.set_xlim(-edge, edge)
